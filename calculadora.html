@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript HTML5 Tip Calculator Application</title>
+
+<style>
+body{ 
+    background: orange; 
+    color: #FFF; 
+    text-align: center; 
+    line-height: 2em; 
+    font-family: Arial; 
+}
+
+input[type=text]{ 
+    padding: 15px; 
+    font-size: 30px; 
+    text-align: center; 
+    background: #e4e4e4; 
+}
+
+</style>
+
+<script>
+function tipCalculate(sliderValue, billId){
+    var tip = document.getElementById("tip");
+    var slideval = document.getElementById("slideval");
+    var bill = parseFloat(document.getElementById(billId).value);
+
+    if (!isNaN(bill)) {
+        var prcnt = sliderValue * 0.01;
+        var tipAmount = bill * prcnt;
+        tip.innerHTML = "$" + tipAmount.toFixed(2);
+    } else {
+        tip.innerHTML = "$0.00";
+    }
+    slideval.innerHTML = sliderValue + "%";
+}
+</script>
+
+</head>
+<body>
+
+<h2>Calculator CANDIDO</h2>
+<h3>insira o valor:</h3>
+
+<input type="text" id="bill" autofocus><br>
+
+<h3>deslise para a percentagem que deseja:</h3>
+<input type="range" min="0" max="100" value="0" step="1" onchange="tipCalculate(this.value, 'bill')" style="width:400px;">
+<span id="slideval">0%</span>
+<h2>Tip = <span id="tip">$0.00</span></h2>
+
+</body>
+</html>
